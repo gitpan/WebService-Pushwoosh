@@ -42,7 +42,7 @@ L<https://cp.pushwoosh.com/api_access>.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 CONSTRUCTOR
 
@@ -91,7 +91,7 @@ documentation for the possible error codes.
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Carp;
 use Furl;
@@ -192,7 +192,6 @@ sub _app {
 		"content" =>
 			{ # Object( language1 =>  'content1', language2 =>  'content2' ) OR string
 			"en" => "English",
-			"ru" => "Русский",
 			"de" => "Deutsch"
 			},
 		"page_id" => 39, # Optional. int
@@ -202,7 +201,8 @@ sub _app {
 				'foo' => 1,
 				'favo_bludd' => 'axlotl_tanks',
 				'tleilaxu_master' => 'glossu_rabban',
-			} "platforms" => [1, 2, 3, 4, 5, 6, 7],   # 1 - iOS; 2 - BB; 3 - Android; 4 - Nokia; 5 - Windows Phone; 7 - OS X
+			},
+		"platforms" => [1, 2, 3, 4, 5, 6, 7],   # 1 - iOS; 2 - BB; 3 - Android; 4 - Nokia; 5 - Windows Phone; 7 - OS X
 
 		# WP7 related
 		"wp_type" => "Tile", # WP7 notification type. 'Tile' or 'Toast'. Raw notifications are not supported. 'Tile' is default
@@ -215,6 +215,7 @@ sub _app {
 		"android_banner" => "http://example.com/banner.png",
 		"android_custom_icon" => "http://example.com/image.png",
 		"android_icon" => "icon.png",
+		"android_root_params" => { "key" => "value" }, # custom key-value object. root level parameters for the android payload
 		"android_sound" => "soundfile", # Optional. Sound file name in the "res/raw" folder, do not include the extension
 
 		#iOS related
@@ -226,7 +227,6 @@ sub _app {
 		"mac_badges" => 3,
 		"mac_sound" => "sound.caf",
 		"mac_root_params" => { "content-available" => 1 },
-		"android_root_params" => { "key" => "value" }, # custom key-value object. root level parameters for the android payload
 
 		 # Recipients
 		"devices" =>
@@ -676,9 +676,7 @@ Mike Cartmell, C<< <mike at mikec.me> >>
 
 Copyright 2013 Mike Cartmell.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 See http://dev.perl.org/licenses/ for more information.
 
